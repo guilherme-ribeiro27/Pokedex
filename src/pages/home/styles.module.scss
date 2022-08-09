@@ -1,0 +1,29 @@
+@import '../../styles/colors.scss';
+
+.page{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    margin-top: 50px;
+    margin-left: 40px;
+}
+.content{
+    div{
+        margin-left: 130px;
+    }
+}
+.title{
+    font-size: 60px;
+    color: #fff;
+    margin-top: 30px;
+    font-weight: 200;
+}
+.subTitle{
+    margin-top: 30px;
+    color: #fffa;
+    font-size: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
