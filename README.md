@@ -1,3 +1,3 @@
 <p>Página Home:</p> 
 
-<img src="./public/Home.jpeg" />
+<img src="public/Home.jpeg" />
