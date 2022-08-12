@@ -3,6 +3,8 @@
 .page{
     display: flex;
     justify-content: space-between;
+    height: 100vh;
+    
 }
 
 .logo{
@@ -10,12 +12,24 @@
     margin-left: 40px;
 }
 .content{
-    div{
+    width:40%;
+    .textContent{
         margin-left: 130px;
     }
 }
+.contentImg{
+    width:60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../../assets/mancha.svg") no-repeat right;
+    background-size: 100%;
+    img{
+        width: 65%;
+    }
+}
 .title{
-    font-size: 60px;
+    font-size: 45px;
     color: #fff;
     margin-top: 30px;
     font-weight: 200;
@@ -23,7 +37,51 @@
 .subTitle{
     margin-top: 30px;
     color: #fffa;
-    font-size: 30px;
+    font-size: 25px;
     display: flex;
     flex-wrap: wrap;
+}
+.btn{
+    margin-top:60px;
+    width: 96%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    border-radius: 10px;
+    position: relative;
+    background-image: linear-gradient(to right, $lightGreen, $lightBlue);
+    color: $darkBlue;
+    height: 60px;
+    cursor: pointer;
+    text-decoration: none;
+    img{
+        position: absolute;
+        right: 5%;
+        transition: 0.5s;
+    }
+    &:hover{
+        img{
+            transition: 0.5s;
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.socialMedias{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 96%;
+    gap: 20px;
+    a{
+        color: $lightGreen;
+        .icon{
+            &:hover{
+                transition: 0.4s;
+                color: $lightBlue;
+            }
+        }
+    }
 }
