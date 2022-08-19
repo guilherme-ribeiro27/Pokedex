@@ -3,6 +3,7 @@ import styles from "./styles.module.scss"
 import { Link } from 'react-router-dom';
 import { ArrowLeftCircle } from 'react-feather';
 import GenCard from "../../components/pokedex/genCard";
+import ArrowLeft from "../../components/common/ArrowLeft";
 
 const Pokedex = () => {
     return (
@@ -10,9 +11,7 @@ const Pokedex = () => {
             <Head title="Pokedex" />
             <div className={styles.page}>
                 <div className={styles.header}>
-                    <Link to="/" className={styles.arrowBack}>
-                        <ArrowLeftCircle  size={50} />
-                    </Link>
+                    <ArrowLeft to="/"/>
                 </div>
                 <div className={styles.cards}>
                     <GenCard name="Kanto" genNum={0}/>
