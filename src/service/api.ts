@@ -1,0 +1,1 @@
+export const generations = 'https://pokeapi.co/api/v2/generation/';
