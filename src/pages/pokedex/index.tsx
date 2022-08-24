@@ -1,28 +1,47 @@
 import Head from "../../components/common/Head"
+import { useParams } from "react-router-dom"
 import styles from "./styles.module.scss"
-import { Link } from 'react-router-dom';
-import { ArrowLeftCircle } from 'react-feather';
-import GenCard from "../../components/pokedex/genCard";
 import ArrowLeft from "../../components/common/ArrowLeft";
+import Logo from '../../assets/logo.svg';
+import { Search } from "react-feather";
+import { useEffect, useState } from "react";
+import PokeCard from "../../components/pokedex/PokeCard";
+
 
 const Pokedex = () => {
+    const { name } = useParams()
+    const [pokemons, setPokemons] = useState([])
+    
+    useEffect(()=>{
+        const fetchData = async()=>{
+            const data = await fetch(`https://pokeapi.co/api/v2/pokedex/${name!.toLocaleLowerCase()}`)
+            return data.json()
+        }
+        fetchData().then((data)=>{
+            setPokemons(data.pokemon_entries)
+        }).catch(err=>console.log(err))
+
+    },[pokemons])
     return (
         <>
-            <Head title="Pokedex" />
             <div className={styles.page}>
                 <div className={styles.header}>
-                    <ArrowLeft to="/"/>
+                    <ArrowLeft to="/regions"/>
+                    <img src={Logo} alt="Logo" />
+                    <div className={styles.searchContainer}>
+                        <input className={styles.search} type="text" placeholder="Pikachu, Ditto, Abra" />
+                        <button>
+                            <Search className={styles.searchIcon} color='white'/>
+                        </button>
+                    </div>
                 </div>
-                <div className={styles.cards}>
-                    <GenCard name="Kanto" genNum={0}/>
-                    <GenCard name="Johto" genNum={1}/>
-                    <GenCard name="Hoenn" genNum={2}/>
-                    <GenCard name="Sinnoh" genNum={3}/>
-                    <GenCard name="Unova" genNum={4}/>
-                    <GenCard name="Kalos" genNum={5}/>
-                    <GenCard name="Alola" genNum={6}/>
-                    <GenCard name="Galar" genNum={7}/>
-                </div>
+               <main className={styles.cardsSection}>
+                    {
+                        pokemons.map((pokemon:any)=>(
+                            <PokeCard name={pokemon.pokemon_species.name} key={pokemon.entry_number}/>
+                        ))
+                    }
+               </main>
             </div>
         </>
     )
