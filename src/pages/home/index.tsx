@@ -19,7 +19,7 @@ const Home = () => {
                         <p className={styles.subTitle}>
                             Projeto de pokedex por regiões utilizando a API pública da PokeAPI
                         </p>
-                        <a className={styles.btn} href="/pokedex">
+                        <a className={styles.btn} href="/regions">
                             Go to Dex
                             <img src={Pokeball} className={styles.imga} alt="Pokeball" />
                         </a>

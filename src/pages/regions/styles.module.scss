@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+
+.page{
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: $black;
+}
+
+.arrowBack{
+    margin: 35px;
+    color: $gray;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 50px;
+}
