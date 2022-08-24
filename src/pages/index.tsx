@@ -1,11 +1,11 @@
 import Home from "./home";
-import Pokedex from "./pokedex";
-import PokeList from "./pokelist";
+import Regions from './regions';
+import Pokedex from './pokedex';
 import Pokemon from "./pokemon";
 
 export {
     Home,
+    Regions,
     Pokedex,
-    PokeList,
     Pokemon
 }
