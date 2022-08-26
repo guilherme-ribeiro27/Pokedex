@@ -19,6 +19,7 @@ const PokeCard = ({name}:props) => {
             }
         }
     ]})
+    const [pokemonType, setPokemonType] = useState('')
     useEffect(()=>{
         const fetchData = async()=>{
             const data = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -26,6 +27,7 @@ const PokeCard = ({name}:props) => {
         }
         fetchData().then((data)=>{
             setPokemon(data)
+            setPokemonType(data.types)
         }).catch(err=>console.log(err))
     },[])
     return (
@@ -33,13 +35,14 @@ const PokeCard = ({name}:props) => {
             <div className={styles.card}>
                 <img src={`${pokemon.sprites.other['official-artwork']['front_default']}`} alt="" loading='lazy' className={styles.cardImg}/>
                 <p>#{pokemon.id.toString().padStart(3,0)}</p>
-                <p>{pokemon.name}</p>
+                <p className={styles.pokeName}>{pokemon.name}</p>
+                <div className={styles.types}>
                 {
                     pokemon.types.map((type:any)=>(
-                        <p className={`${type.type.name}`} key={type.type.name}>{type.type.name}</p>
+                        <div className={`${styles[type.type.name]} ${styles.type}`} key={type.type.name} >{type.type.name}</div>
                     ))
                 }
-                
+                </div>
             </div>
         </>
     )
