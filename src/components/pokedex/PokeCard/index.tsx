@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss'
 
 interface props{
@@ -32,18 +33,20 @@ const PokeCard = ({name}:props) => {
     },[])
     return (
         <>
-            <div className={styles.card}>
-                <img src={`${pokemon.sprites.other['official-artwork']['front_default']}`} alt="" loading='lazy' className={styles.cardImg}/>
-                <p>#{pokemon.id.toString().padStart(3,0)}</p>
-                <p className={styles.pokeName}>{pokemon.name}</p>
-                <div className={styles.types}>
-                {
-                    pokemon.types.map((type:any)=>(
-                        <div className={`${styles[type.type.name]} ${styles.type}`} key={type.type.name} >{type.type.name}</div>
-                    ))
-                }
+            <Link to={`/pokemon/${pokemon.id}`} className={styles.link}>
+                <div className={styles.card}>
+                    <img src={`${pokemon.sprites.other['official-artwork']['front_default']}`} alt="" loading='lazy' className={styles.cardImg}/>
+                    <p>#{pokemon.id.toString().padStart(3,0)}</p>
+                    <p className={styles.pokeName}>{pokemon.name}</p>
+                    <div className={styles.types}>
+                    {
+                        pokemon.types.map((type:any)=>(
+                            <div className={`${styles[type.type.name]} ${styles.type}`} key={type.type.name} >{type.type.name}</div>
+                        ))
+                    }
+                    </div>
                 </div>
-            </div>
+            </Link>
         </>
     )
 }

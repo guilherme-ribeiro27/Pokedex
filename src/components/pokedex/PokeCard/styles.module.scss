@@ -1,5 +1,16 @@
 @import '../../../styles/colors.scss';
 
+.link{
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
+  :hover{
+    width: 297px;
+    height: 297px;
+    transition: 0.4s ease-in-out;
+  }
+  z-index: 2;
+  
+}
 .card {
   display: flex;
   flex-direction: column;
@@ -9,6 +20,10 @@
   border-radius: 10px;
   width: 270px;
   height: 270px;
+  :hover{
+    transform: none;
+
+  }
   .cardImg{
     width: 150px;
     height: 150px;
