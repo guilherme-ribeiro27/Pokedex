@@ -8,10 +8,20 @@ import { useEffect, useState } from "react";
 import PokeCard from "../../components/pokedex/PokeCard";
 
 
+interface Pokemon{
+    entry_number: number,
+    pokemon_species:{
+        name:string
+    }
+}
 const Pokedex = () => {
     const { name } = useParams()
-    const [pokemons, setPokemons] = useState([])
-    
+    const [pokemons, setPokemons] = useState<Pokemon[]>([])
+    const [search, setSearch] = useState('')
+    const filteredPokemons = search.length > 0
+    ? pokemons.filter((pokemon) => pokemon.pokemon_species.name.includes(search.toLocaleLowerCase()))
+    : [];
+
     useEffect(()=>{
         const fetchData = async()=>{
             const data = await fetch(`https://pokeapi.co/api/v2/pokedex/${name!.toLocaleLowerCase()}`)
@@ -22,6 +32,7 @@ const Pokedex = () => {
         }).catch(err=>console.log(err))
 
     },[pokemons])
+
     return (
         <>
             <div className={styles.page}>
@@ -29,7 +40,13 @@ const Pokedex = () => {
                     <ArrowLeft to="/regions"/>
                     <img src={Logo} alt="Logo" />
                     <div className={styles.searchContainer}>
-                        <input className={styles.search} type="text" placeholder="Pikachu, Ditto, Abra" />
+                        <input 
+                            className={styles.search} 
+                            type="text" 
+                            placeholder="Pikachu, Ditto, Abra" 
+                            onChange={e => setSearch(e.target.value)}
+                            value={search}
+                            />
                         <button>
                             <Search className={styles.searchIcon} color='white'/>
                         </button>
@@ -37,9 +54,15 @@ const Pokedex = () => {
                 </div>
                <main className={styles.cardsSection}>
                     {
-                        pokemons.map((pokemon:any)=>(
-                            <PokeCard name={pokemon.pokemon_species.name} key={pokemon.entry_number}/>
-                        ))
+                        search.length > 0 ? (
+                            filteredPokemons.map((pokemon)=>(
+                                <PokeCard name={pokemon.pokemon_species.name} key={pokemon.entry_number} regionName={`${name}`}/>
+                             ))
+                        ) : (
+                            pokemons.map((pokemon)=>(
+                                <PokeCard name={pokemon.pokemon_species.name} key={pokemon.entry_number} regionName={`${name}`}/>
+                             ))
+                        )
                     }
                </main>
             </div>
